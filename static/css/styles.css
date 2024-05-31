@@ -80,3 +80,23 @@ p {
     margin: 0;
     color: #555;
 }
+.ai-examples {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.ai-examples p {
+    margin: 0 0 10px;
+}
+
+.ai-examples ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.ai-examples li {
+    margin-bottom: 5px;
+}

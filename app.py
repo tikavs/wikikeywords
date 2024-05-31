@@ -1,3 +1,4 @@
+import requests
 from flask import Flask, render_template, request
 from article import fetch_article_content
 from chat import perform_ai_search

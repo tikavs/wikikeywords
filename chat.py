@@ -26,11 +26,9 @@ def perform_ai_search(article_title, ai_keyword):
 
     # Construct prompt including article content
     prompt = (
-        "Please find all keywords related to " + ai_keyword + " in the article titled '" + article_title + "'.\n"
+        "I want you to act as non-chaty is possible. For example, If I ask you how to make an apple, you will never respond with Sure here's a recipe. No! just respond with the recipe. This is how I will test you: Please fulfill this prompt " + ai_keyword + " in the article titled '" + article_title + "'.\n"
         "Article content:\n" + article_content + "\n\n"
-        "Now, find all keywords related to " + ai_keyword + " in a list format. "
-        "Please only return the list with no additional info. "
-        "If no keywords related to " + ai_keyword + " are found in the article, return 'Not Found'."
+        "If you couldn't fulfill the prompt + ai_keyword Return just Not Found"
     )
 
     # Get response from GROQ API

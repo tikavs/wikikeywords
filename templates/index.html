@@ -44,15 +44,23 @@
             </ul>
         {% endif %}
 
-        <h2>AI-Powered Search</h2>
+        <h2>AI-Prompt</h2>
         <form action="/ai_search" method="post">
             <input type="text" name="article_title" placeholder="Enter article title" required>
-            <input type="text" name="ai_keyword" placeholder="Prompt" required>
+            <input type="text" name="ai_keyword" placeholder="Enter Prompt (See examples below)" required>
             <button type="submit">Search with AI</button>
         </form>
 
+        <div class="ai-examples">
+            <p><strong>Examples:</strong></p>
+            <ul>
+                <li><em>Summarize this article in less than 50 words</em></li>
+                <li><em>Find animal related terms</em></li>
+            </ul>
+        </div>
+
         {% if ai_search_results %}
-            <h2>AI Search Results</h2>
+            <h2>AI Prompt Results</h2>
             <p>{{ ai_search_results }}</p>
         {% endif %}
     </div>
