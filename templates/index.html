@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wikipedia Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const keyword = "{{ keyword | e }}";
+            if (keyword) {
+                const regex = new RegExp(`(${keyword})`, 'gi');
+                document.querySelectorAll('.result-snippet').forEach(snippet => {
+                    snippet.innerHTML = snippet.innerHTML.replace(regex, '<span class="highlight">$1</span>');
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Wikipedia Search</h1>
+        <form action="/search" method="post">
+            <input type="text" name="keyword" placeholder="Enter a keyword" required>
+            <label>
+                <input type="checkbox" name="exact"> Search for exact phrase
+            </label>
+            <label>
+                Number of results:
+                <input type="number" name="num_results" min="1" max="50" value="10">
+            </label>
+            <button type="submit">Search</button>
+        </form>
+
+        {% if search_results %}
+            <h2>Search Results for "{{ keyword }}"</h2>
+            <ul>
+                {% for result in search_results %}
+                    <li>
+                        <a href="https://en.wikipedia.org/?curid={{ result.pageid }}" target="_blank">{{ result.title }}</a>
+                        <p class="result-snippet">{{ result.snippet | safe }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <h2>AI-Powered Search</h2>
+        <form action="/ai_search" method="post">
+            <input type="text" name="article_title" placeholder="Enter article title" required>
+            <input type="text" name="ai_keyword" placeholder="Enter AI keyword" required>
+            <button type="submit">Search with AI</button>
+        </form>
+
+        {% if ai_search_results %}
+            <h2>AI Search Results</h2>
+            <p>{{ ai_search_results }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
